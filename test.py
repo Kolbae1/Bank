@@ -6,8 +6,10 @@ from BankAccount import *
 #print(trans1.getDate())
 
 bank1 = BankAccount()
-#bank2 = BankAccount("caleb", "coleman")
-#print(bank1.__str__())
-#trans1 = Transaction()
+print(bank1.__str__())
+
+bank1.deposit()
+bank1.deposit()
+
 print(bank1.__str__())
 #print(bank2.getAccountNum())
