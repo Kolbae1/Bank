@@ -177,13 +177,13 @@ class Transaction :
     # Mutator method that sets the date for a transaction
     def setDate(self):
         date = str(datetime.date.today())
-        date =date.split("-")
+        date = date.split("-")
         self._year = date[0]
         self._month = date[1]
         self._day = date[2]
-        if Transaction.DEBUG:
-            arf = self._date.split("-")
-            print(arf)
+        #if Transaction.DEBUG:
+            #arf = self._date.split("-")
+            #print(arf)
             
         return
 
