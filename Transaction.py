@@ -34,7 +34,7 @@ class Transaction :
             self._tType = tType
 
         # if the amount is 0.0, prompt for the amount
-        if amount <= 0 and self._tType != "interest":
+        if amount <= 0 and self._tType != 3:
             self.setAmount()
         else:
             self._amount = amount
@@ -187,5 +187,3 @@ class Transaction :
             
         return
 
-
-        
