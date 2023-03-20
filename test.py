@@ -1,5 +1,13 @@
-from transaction import *
+from Transaction import *
+from BankAccount import * 
 
-trans1 = Transaction("Bank",100.00,"03-22-23")
-print(trans1.getAmount())
-print(trans1.getDate())
+#trans1 = Transaction()
+#print(trans1.getAmount())
+#print(trans1.getDate())
+
+bank1 = BankAccount()
+#bank2 = BankAccount("caleb", "coleman")
+#print(bank1.__str__())
+#trans1 = Transaction()
+print(bank1.__str__())
+#print(bank2.getAccountNum())
