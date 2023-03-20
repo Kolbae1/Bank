@@ -77,6 +77,25 @@ class BankAccount:
         self._balance = self._balance + self._interestDeposit
         self._transactions.append(trans)
 
+
+    def widthdrawal(self): 
+        trans = Transaction(2)
+
+        if(trans.getAmount() > self._balance + 250):
+            print("Transaction is denied")
+        
+        if(self._balance > 0):
+            trans = Transaction(2)
+            self._transactions.append(trans)
+            self._balance = self._balance - trans.getAmount()
+            
+            if(self._balance < 0):
+                self._overdrawNum = self._overdrawNum + 1
+                penaltyTrans = Transaction(2, BankAccount.OVERDRAFT_FEE)
+
+
+
+
     def setFirstName(self):
     
         firstName = input("Enter the first name of the account: ")
