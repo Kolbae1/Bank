@@ -2,10 +2,12 @@ from Transaction import *
 
 class BankAccount: 
 
+    # global variables used throughout the program
     OVERDRAFT_FEE = 20.00
     INTEREST_RATE = 0.075
     _accountNumber = 1000
 
+    # constructor to make the actual bank account
     def __init__(self, firstName = "", lastName = "", balance = 0):
 
         # ***** handles the first name ***** 
@@ -83,9 +85,9 @@ class BankAccount:
 
         if(trans.getAmount() > self._balance + 250):
             print("Transaction is denied")
+            return False
         
         elif(self._balance > 0):
-           # trans = Transaction(2)
             self._transactions.append(trans)
             self._balance = self._balance - trans.getAmount()
             
@@ -95,6 +97,18 @@ class BankAccount:
                 self._balance = self._balance - BankAccount.OVERDRAFT_FEE
                 print("Account is overdrawn.")
                 self._transactions.append(trans)
+                return False
+            
+            return True
+
+
+   # def transfer(self, otherAccount):
+     #   trans = Transaction(4)
+
+    #    if(otherAccount.withdrawal() == True):
+    #        transAmount = otherAccount.withdrawl()
+     #       self._balance = self._balance + transAmount
+#        elif()
 
 
 
