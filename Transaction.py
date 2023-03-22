@@ -144,7 +144,7 @@ class Transaction :
             print(" 1 - Deposit")
             print(" 2 - Withdrawl")
             print(" 3 - Interest Payment")
-            print(" 3 - Transfer", end = "")
+            print(" 4 - Transfer", end = "")
             option = int(input(":"))
             
         if option == 1:
