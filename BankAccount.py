@@ -63,7 +63,7 @@ class BankAccount:
         self._balance = balance 
 
     # Deposits the specified amount into the bank account    
-    def deposit(self):
+    def deposit(self, amount = 0):
         trans = Transaction(1)
         
         self._balance = self._balance + trans.getAmount()
@@ -88,9 +88,9 @@ class BankAccount:
 
         if(trans.getAmount() > self._balance + 250):
             print("Transaction is denied")
-            return False
+          
         
-        elif(self._balance > 0):
+        else:
             self._transactions.append(trans)
             self._balance = self._balance - trans.getAmount()
             
@@ -100,18 +100,19 @@ class BankAccount:
                 self._balance = self._balance - BankAccount.OVERDRAFT_FEE
                 print("Account is overdrawn.")
                 self._transactions.append(trans)
-                return False
+                return trans._amount
+        
+
+
+    def transfer(self, otherAccount):
+        if(otherAccount.withdrawal() != None):
             
-            return True
+            transAmount = otherAccount.withdrawal()
+            self.deposit(transAmount) 
+            trans = Transaction(4)
+            
 
-
-   # def transfer(self, otherAccount):
-     #   trans = Transaction(4)
-
-    #    if(otherAccount.withdrawal() == True):
-    #        transAmount = otherAccount.withdrawal()
-     #       self._balance = self._balance + transAmount
-#        elif()
+        
 
 
 
