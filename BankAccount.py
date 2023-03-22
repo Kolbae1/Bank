@@ -62,17 +62,20 @@ class BankAccount:
         # ***** handles the balance ***** 
         self._balance = balance 
 
-    
+    # Deposits the specified amount into the bank account    
     def deposit(self):
         trans = Transaction(1)
         
         self._balance = self._balance + trans.getAmount()
         self._transactions.append(trans)
 
-
+    # makes an interest payment into the account based on the 
+    # set interest rate.
     def interest(self):
+        # getting trans type
         trans = Transaction(3)
 
+        # 
         balance = self._balance
         self._interestDeposit = BankAccount.INTEREST_RATE * balance
 
@@ -106,7 +109,7 @@ class BankAccount:
      #   trans = Transaction(4)
 
     #    if(otherAccount.withdrawal() == True):
-    #        transAmount = otherAccount.withdrawl()
+    #        transAmount = otherAccount.withdrawal()
      #       self._balance = self._balance + transAmount
 #        elif()
 
@@ -178,10 +181,13 @@ class BankAccount:
         return self._accountNum
 
     def showTransactions(self):
-
-       # for item in self._transactions 
+       # trans = []
+        # loops through and prints transaction history for that class
+        #for item in self._transactions:
+            #trans.append(item)
             
-        return 0
+        #return self._transactions
+        pass
 
     #def getOverdrawCount(self):
         #return self._overdrawNum
@@ -202,5 +208,5 @@ class BankAccount:
 
     # Prints all of the transaction instance variables.
     # @return: The formatted, machine readable string of the transaction
-    def __repr__ (self):
-        return ("Transaction(tNumber = %d, amount = $%.2f, date = %s, tType = %s)" %(self._tNumber, self._amount, self._date, self._tType))
+    #def __repr__ (self):
+       # return ("Transaction(tNumber = %d, amount = $%.2f, date = %s, tType = %s)" %(self._tNumber, self._amount, self._date, self._tType))
