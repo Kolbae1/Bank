@@ -1,0 +1,51 @@
+""" 
+Simple Unit Test using Python's unittest module and assertions
+@author: Caleb Coleman
+@date: March 23, 2023
+
+Import the unittest module and the BankAccount module
+Test each method with at least one unit test
+"""
+
+import unittest
+from BankAccount import BankAccount
+
+class TestBankAccount(unittest.TestCase):
+     
+  
+    def setUp(self):
+        self._account1 = BankAccount(5000.0)
+        self._account2 = BankAccount(500.0)
+
+    # tests constructor 
+    def testConstructor(self):
+        pass
+
+
+    def testGetBalance(self):
+        print("\nTesting getBalance()*********************")
+        expected1 = 5000.0
+
+        
+        print("Expected Balance for account1: %.2f" %expected1)
+        print("Actual: %.2f" %self._account1.getBalance())
+        self.assertEquals(self._account1.getBalance(), expected1)
+      
+
+
+    def testDeposit(self):
+        print("Testing deposit()**************")
+        deposit = 30.0
+        expected1 = 5030.0
+
+        self._account1.deposit(deposit)
+
+
+        print("Expected balance after deposit for account1: %.2f" %expected1)
+        print("Actual: %.2f" %self._account1.getBalance())
+        self.assertEquals(self._account1.getBalance(), expected1)
+  
+
+
+if __name__ == '__main__':
+    unittest.main()
