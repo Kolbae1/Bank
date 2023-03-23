@@ -1,0 +1,46 @@
+#
+#  This program tests the BankAccount class.
+#  Author: John McManus
+
+from new_bankaccount import BankAccount
+
+EXPECTEDANSWER1 = 1504.90
+EXPECTEDANSWER2 = 505.00
+
+#  Create a bank account and test the methods
+
+print("\nTest Harry's Account") 
+harrysAccount = BankAccount(1000.0)
+harrysAccount.deposit(500.0)  # Balance is now $1500
+harrysAccount.withdraw(1600.0)  # Balance is now $1490 
+harrysAccount.addInterest()  # add 1% interest, the Balance is now $1490 + 14.90
+
+print("The account has $%.2f" % harrysAccount.getBalance())
+
+if EXPECTEDANSWER1 == harrysAccount.getBalance():
+    print("Expected: $%.2f, Correct answer: $%.2f" % (EXPECTEDANSWER1, harrysAccount.getBalance()))
+else: 
+    print("Expected: $%.2f, Incorrect answer: $%.2f" % (EXPECTEDANSWER1, harrysAccount.getBalance()))
+    
+print("ACCOUNT INFO ************")
+harrysAccount.printAccount()
+print("TRANSACTIONS *************")
+harrysAccount.printTransactions()
+
+#  Create a second bank account and test the methods
+
+print("\nTest Mary's Account")  
+marysAccount = BankAccount(2000.0)
+marysAccount.deposit(500.0)  # Balance is now $2500
+marysAccount.withdraw(2000.0)  # Balance is now $500 
+marysAccount.addInterest(1.0)  # add 1% interest, the Balance is now $500 + 5.00
+
+print("The account has $%.2f" % marysAccount.getBalance())
+
+if EXPECTEDANSWER2 == marysAccount.getBalance():
+    print("Expected: $%.2f, Correct answer: $%.2f" % (EXPECTEDANSWER2, marysAccount.getBalance()))
+else: 
+    print("Expected: $%.2f, Incorrect answer: $%.2f" % (EXPECTEDANSWER2, marysAccount.getBalance()))
+
+marysAccount.printAccount()
+marysAccount.printTransactions()
