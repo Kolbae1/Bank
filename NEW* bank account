@@ -1,14 +1,26 @@
 #
-#  This module defines a class that models a bank account.
-#  A bank account has a balance that can be changed by deposits and withdrawals.
+#  This program creates a bank account object that has overdraft fees, 
+# interest rate, first and last name requirements,  unique account numbers, 
+# transaction lists, overdraft counter, and a balance.
+#
+# Date Created: 3/18/2023
+# 
+# Created by Kolby Gibson and Caleb Coleman
+# 
+#  
 
+
+# import transaction class
 from transaction import Transaction
+
+# BankAccount class
 class BankAccount :
 
    #  Define any class variables or constants
    _nextAccount = 1000 # A class variable that hold the number of the next account
    OVERDRAFT_FEE = 20.00
    INTEREST_RATE = 0.075
+
    #  Constructs a bank account with a given balance.
    #  @param initialBalance the initial account balance (default = 0.0)
    #
@@ -20,15 +32,24 @@ class BankAccount :
       self._tList = []   #  The list of transactions
       self._tList.append(Transaction(amount = initialBalance, tType = "Deposit"))
       print("Initial account balance is $%.2f" % initialBalance)
+
        # ***** handles the overdrawn count of the account *****
       overdraw = 0
       self._overdrawNum = overdraw
+
    #  Define the Accessor Methods
    #  Gets the current balance of this account.
    #  @return the current balance
    #
    def getBalance(self) :
       return sum(self._tList)
+
+
+   # Gets the current overdraft number for this account.
+   # @return current overdraft number
+   def getOverdraftNum(self):
+       return(self._overdrawNum)
+   
 
    #  Method that prints the transactions in this account.
    #
@@ -64,14 +85,17 @@ class BankAccount :
    #
    def withdraw(self, amount) :
 
+      # if withdrawal is more than balance + 250, deny transaction
       if amount > (sum(self._tList) + 250.0):
           print("Transaction denied")
           return False
+      # if withdrawal is more than balance, overdraft penalty
       elif (amount > sum(self._tList)) :
          self._overdrawNum = self._overdrawNum + 1
          self._tList.append(Transaction(amount = -self.OVERDRAFT_FEE, tType = "Penalty"))
          print("Attempt to overdraw account, penalty of %.2f " % self.OVERDRAFT_FEE, end = "")
          return False
+      # withdrawal from account
       else :         
          self._tList.append(Transaction(amount = -amount, tType = "Withdrawl"))
          print("withdraw of $%.2f " % amount, end = "")
@@ -99,7 +123,6 @@ class BankAccount :
       print("Interest of $%.2f added, Current account balance is $%.2f" % (amount, sum(self._tList)))
       
    # Mutator method that sets the first name for the account holder
-   # @return first name
    def setFirst(self):
       firstName = input("Enter the first name of the account: ")
       if(firstName == ""):
@@ -121,7 +144,6 @@ class BankAccount :
       return 
 
    # Mutator method that sets the last name for the account holder
-   # @return last name
    def setLast(self):
       lastName = input("Enter the last name of the account: ")
 
