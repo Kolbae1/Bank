@@ -66,14 +66,17 @@ class BankAccount :
 
       if amount > (sum(self._tList) + 250.0):
           print("Transaction denied")
+          return False
       elif (amount > sum(self._tList)) :
          self._overdrawNum = self._overdrawNum + 1
          self._tList.append(Transaction(amount = -self.OVERDRAFT_FEE, tType = "Penalty"))
          print("Attempt to overdraw account, penalty of %.2f " % self.OVERDRAFT_FEE, end = "")
+         return False
       else :         
          self._tList.append(Transaction(amount = -amount, tType = "Withdrawl"))
          print("withdraw of $%.2f " % amount, end = "")
-      print("Current account balance is $%.2f" % sum(self._tList))
+         return True
+      # print("Current account balance is $%.2f" % sum(self._tList))
 
    
    # Makes a transfer from one bank account to another
@@ -81,8 +84,9 @@ class BankAccount :
    # @param amount the amount of the transfer
    #
    def transfer(self, otherAccount, amount):
-       
-       if
+       # attempt withdrawal from other onject, transfer is made if true
+       if(otherAccount.withdraw(amount) == True):
+           self._tList.append(Transaction(amount = amount, tType = "Transfer"))
 
 
 
