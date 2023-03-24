@@ -24,12 +24,41 @@ class BankAccount :
    #  Constructs a bank account with a given balance.
    #  @param initialBalance the initial account balance (default = 0.0)
    #
-   def __init__(self, initialBalance = 0.0) :
+   def __init__(self, firstName = "", lastName = "", initialBalance = 0.0) :
       self._accountNum = BankAccount._nextAccount  # The account number
       BankAccount._nextAccount = BankAccount._nextAccount + 1
-      self.setFirst()    # The first name associate with the account
-      self.setLast()     # The last name associate with the account
-      self._tList = []   #  The list of transactions
+      if(firstName == ""):
+          self.setFirst()   # The first name associate with the account
+      else:
+          # checks if valid length of the name 
+         if(len(firstName) > 25):
+               self.setFirst()
+
+         # checks for special characters in name 
+         specChars = '[@_!#$%^&*()<>?/\|}{"~:]'
+         for char in specChars: 
+               if(char in firstName):
+                  self.setFirst()
+      
+         self._firstName = firstName
+
+      if(lastName == ""):
+         self.setLast() # The last name associate with the account
+
+      else:
+         # checks if valid length of the name 
+         if(len(lastName) > 40):
+               self.setLast()
+
+         # checks for special characters in name 
+         specChars = '[@_!#$%^&*()<>?/\|}{"~:]'
+         for char in specChars: 
+               if(char in lastName):
+                  self.setLast()
+      
+         self._lastName = lastName
+    
+      self._tList = []   # The list of transactions
       self._tList.append(Transaction(amount = initialBalance, tType = "Deposit"))
       print("Initial account balance is $%.2f" % initialBalance)
 
@@ -44,6 +73,13 @@ class BankAccount :
    def getBalance(self) :
       return sum(self._tList)
 
+   # Gets the current first name of the account
+   def getFirstName(self):
+        return self._firstName
+   
+   # Gets the current last name of the account
+   def getLastName(self):
+        return self._lastName
 
    # Gets the current overdraft number for this account.
    # @return current overdraft number
@@ -164,3 +200,10 @@ class BankAccount :
          self._lastName = lastName
       return 
 
+    # Prints all of the transaction instance variables.
+    # @return: The formatted, human readable string of the transaction
+   def __str__ (self):
+      transaction = []
+      for item in self._tList:
+         transaction.append(item) 
+      return transaction
